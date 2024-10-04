@@ -1,62 +1,69 @@
 package com.problemsolver.booksapp.ui
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.problemsolver.booksapp.R
-import com.problemsolver.booksapp.ui.placeholder.PlaceholderContent
+import com.problemsolver.booksapp.data.model.Status
+import com.problemsolver.booksapp.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * A fragment representing a list of Items.
- */
-class HomeFragment : Fragment() {
+@AndroidEntryPoint
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private var columnCount = 1
+    private val viewModel: BooksViewModel by viewModels()
+    private val binding by viewBinding(FragmentHomeBinding::bind)
+    private lateinit var adapter: BooksAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initObserver()
+        initData()
+        initViews()
+    }
 
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
+    private fun initData() {
+        viewModel.getWantToRead()
+    }
+
+    private fun initViews() {
+        adapter = BooksAdapter {
+            val intent = Intent(requireContext(), BookDetailActivity::class.java)
+            intent.putExtra("key", it.work?.key)
+            intent.putExtra("imageUrl", it.work?.getCoverLargeUrl())
+            startActivity(intent)
+        }
+        with(binding) {
+            rvBooks.setAdapter(adapter)
+            rvBooks.setLayoutManager(GridLayoutManager(requireContext(), 2))
+            rvBooks.addVeiledItems(6)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
+    private fun initObserver() {
+        viewModel.wantToRead.observe(viewLifecycleOwner) {
+            when (it.status) {
+                Status.LOADING -> {
+                    binding.rvBooks.veil()
                 }
-                adapter = BooksAdapter(PlaceholderContent.ITEMS)
+
+                Status.SUCCESS -> {
+                    binding.rvBooks.unVeil()
+                    it.data?.readingLogEntries?.let { books ->
+                        adapter.setBooks(books)
+                    }
+                }
+
+                Status.ERROR -> {
+                    binding.rvBooks.unVeil()
+                    Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                }
             }
         }
-        return view
-    }
-
-    companion object {
-
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
     }
 }

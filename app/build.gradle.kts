@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -49,6 +51,16 @@ dependencies {
     implementation(libs.viewbindingpropertydelegate.noreflection)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+//    ksp(libs.moshi.kotlin.codegen)
+    implementation(libs.coil)
+    implementation(libs.androidveil)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    api(libs.moshi.kotlin)
+    api(libs.retrofit.moshi)
+    implementation(libs.okhttp.logging)
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.kotlin.serialization)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

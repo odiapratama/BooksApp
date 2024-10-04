@@ -1,43 +1,55 @@
 package com.problemsolver.booksapp.ui
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.problemsolver.booksapp.databinding.FragmentItemBinding
-import com.problemsolver.booksapp.ui.placeholder.PlaceholderContent.PlaceholderItem
+import coil.load
+import com.problemsolver.booksapp.data.model.WantToRead
+import com.problemsolver.booksapp.databinding.ItemBookBinding
 
 class BooksAdapter(
-    private val values: List<PlaceholderItem>
+    private var books: List<WantToRead.Work> = emptyList(),
+    private val onItemClick: (WantToRead.Work) -> Unit
 ) : RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         return ViewHolder(
-            FragmentItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+            ItemBookBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        val item = books[position]
+        holder.bind(item)
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = books.size
 
-    inner class ViewHolder(binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
+    inner class ViewHolder(
+        private val binding: ItemBookBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+        fun bind(item: WantToRead.Work) {
+            with(binding) {
+                ivImage.load(item.work?.getCoverMediumUrl()) {
+                    crossfade(true)
+                }
+                tvTitle.text = item.work?.title
+                tvAuthor.text = item.work?.authorNames?.joinToString()
+            }
+
+            binding.root.setOnClickListener {
+                onItemClick(item)
+            }
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun setBooks(newDataBooks: List<WantToRead.Work>) {
+        books = newDataBooks
+        notifyDataSetChanged()
+    }
 }
