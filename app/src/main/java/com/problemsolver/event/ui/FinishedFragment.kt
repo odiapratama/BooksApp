@@ -2,9 +2,7 @@ package com.problemsolver.event.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,7 +10,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.problemsolver.event.R
 import com.problemsolver.event.data.model.Status
-import com.problemsolver.event.databinding.FragmentFinishedBinding
 import com.problemsolver.event.databinding.FragmentUpcomingBinding
 import dagger.hilt.android.AndroidEntryPoint
 

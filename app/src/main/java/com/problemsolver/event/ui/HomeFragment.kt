@@ -46,8 +46,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                             binding.tvFinished.visible()
                         }
                         Status.SUCCESS -> {
-                            upcomingAdapter.setBooks(it.data?.finished ?: emptyList())
-                            finishedAdapter.setBooks(it.data?.finished ?: emptyList())
+                            upcomingAdapter.setBooks(it.data?.finished?.take(5) ?: emptyList())
+                            finishedAdapter.setBooks(it.data?.finished?.take(5) ?: emptyList())
                             if (it.data?.upcoming.isNullOrEmpty()) binding.tvUpcoming.gone()
                             else binding.tvUpcoming.visible()
                             if (it.data?.finished.isNullOrEmpty()) binding.tvFinished.gone()

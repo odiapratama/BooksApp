@@ -27,7 +27,7 @@ class EventViewModel @Inject constructor(
     val eventDetail: LiveData<ApiResponse<Event>>
         get() = _eventDetail
 
-    suspend fun getAllEvents(search: String) = eventUseCase(search)
+    fun getAllEvents(search: String) = eventUseCase(search)
 
     fun getEvents(active: Int = 0, search: String = "") {
         viewModelScope.launch {
