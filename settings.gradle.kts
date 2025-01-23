@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "BooksApp"
+rootProject.name = "DicodingEvent"
 include(":app")

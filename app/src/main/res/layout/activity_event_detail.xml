@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="parallax"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_height="400dp" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/app_name"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <com.skydoves.androidveil.VeilLayout
+            android:id="@+id/veilLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:veilLayout_radius="@dimen/small"
+            app:veilLayout_shimmerEnable="true"
+            app:veilLayout_veiled="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/medium"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOwner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium"
+                    android:layout_marginTop="@dimen/small"
+                    android:layout_marginEnd="@dimen/small"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    app:drawableStartCompat="@drawable/ic_computer"
+                    app:layout_constraintEnd_toStartOf="@id/tvLocation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small"
+                    android:layout_marginTop="@dimen/small"
+                    android:layout_marginEnd="@dimen/medium"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAlignment="textEnd"
+                    app:drawableEndCompat="@drawable/ic_location"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tvOwner"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvQuota"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium"
+                    android:layout_marginTop="@dimen/small"
+                    android:layout_marginEnd="@dimen/small"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    app:drawableStartCompat="@drawable/ic_ticket"
+                    app:layout_constraintEnd_toStartOf="@id/tvTime"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvOwner" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/small"
+                    android:layout_marginTop="@dimen/small"
+                    android:layout_marginEnd="@dimen/medium"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAlignment="textEnd"
+                    app:drawableEndCompat="@drawable/ic_calendar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tvQuota"
+                    app:layout_constraintTop_toBottomOf="@id/tvLocation" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvQuota" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnJoin"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/medium"
+                    android:layout_marginTop="@dimen/medium"
+                    android:layout_marginEnd="@dimen/medium"
+                    android:layout_marginBottom="@dimen/medium"
+                    android:text="@string/register"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescription" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.skydoves.androidveil.VeilLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

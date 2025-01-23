@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.problemsolver.booksapp"
+    namespace = "com.problemsolver.event"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.problemsolver.booksapp"
+        applicationId = "com.problemsolver.event"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

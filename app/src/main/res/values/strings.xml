@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">BooksApp</string>
+    <string name="app_name">DicodingEvent</string>
+    <string name="title_upcoming">Upcoming</string>
     <string name="title_home">Home</string>
-    <string name="title_about">About</string>
+    <string name="title_finished">Finished</string>
     <string name="student_name">Odia Pratama</string>
     <string name="student_email">odiapratama@gmail.com</string>
     <string name="subjects">Subjects</string>
     <string name="action_share">Share</string>
+    <string name="register">Register</string>
 </resources>
