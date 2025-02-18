@@ -5,4 +5,6 @@
     <string name="title_finished">Finished</string>
     <string name="action_share">Share</string>
     <string name="register">Register</string>
+    <string name="title_favorite">Favorite</string>
+    <string name="no_favorite">There is no favorite events</string>
 </resources>

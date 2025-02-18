@@ -1,6 +1,6 @@
 package com.problemsolver.event.di
 
-import com.problemsolver.event.data.source.EventApi
+import com.problemsolver.event.data.source.remote.EventApi
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module

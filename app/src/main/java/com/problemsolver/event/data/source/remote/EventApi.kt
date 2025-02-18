@@ -1,4 +1,4 @@
-package com.problemsolver.event.data.source
+package com.problemsolver.event.data.source.remote
 
 import com.problemsolver.event.data.model.EventDetailResponse
 import com.problemsolver.event.data.model.EventsResponse

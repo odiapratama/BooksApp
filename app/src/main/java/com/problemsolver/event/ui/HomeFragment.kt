@@ -46,8 +46,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                             binding.tvFinished.visible()
                         }
                         Status.SUCCESS -> {
-                            upcomingAdapter.setBooks(it.data?.finished?.take(5) ?: emptyList())
-                            finishedAdapter.setBooks(it.data?.finished?.take(5) ?: emptyList())
+                            upcomingAdapter.setData(it.data?.finished?.take(5) ?: emptyList())
+                            finishedAdapter.setData(it.data?.finished?.take(5) ?: emptyList())
                             if (it.data?.upcoming.isNullOrEmpty()) binding.tvUpcoming.gone()
                             else binding.tvUpcoming.visible()
                             if (it.data?.finished.isNullOrEmpty()) binding.tvFinished.gone()
@@ -88,7 +88,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             rvFinished.setLayoutManager(LinearLayoutManager(requireContext()))
             rvFinished.addVeiledItems(3)
         }
-        binding.searchView.onQueryTextChanged(lifecycleScope) {
+        binding.searchView.onQueryTextChanged(viewLifecycleOwner.lifecycleScope) {
             getData(it)
         }
     }

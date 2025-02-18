@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/menu_favorite"
+        android:name="com.problemsolver.event.ui.FavoriteFragment"
+        android:label="@string/title_favorite"
+        tools:layout="@layout/fragment_favorite" />
+
+    <fragment
         android:id="@+id/menu_upcoming"
         android:name="com.problemsolver.event.ui.UpcomingFragment"
         android:label="@string/title_upcoming"

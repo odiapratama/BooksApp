@@ -54,4 +54,20 @@ class EventViewModel @Inject constructor(
             }
         }
     }
+
+    fun insertFavoriteEvent(event: Event) {
+        viewModelScope.launch {
+            repository.insertFavoriteEvent(event)
+        }
+    }
+
+    suspend fun getFavoriteEvents() = repository.getFavoriteEvents()
+
+    fun deleteFavoriteEvent(id: Int) {
+        viewModelScope.launch {
+            repository.deleteFavoriteEvent(id)
+        }
+    }
+
+    suspend fun getFavoriteEventById(id: Int) = repository.getFavoriteEventById(id)
 }

@@ -47,8 +47,8 @@ class EventAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setBooks(newDataBooks: List<Event>) {
-        events = newDataBooks
+    fun setData(newData: List<Event>) {
+        events = newData
         notifyDataSetChanged()
     }
 }

@@ -54,7 +54,7 @@ class UpcomingFragment : Fragment(R.layout.fragment_upcoming) {
                 Status.SUCCESS -> {
                     binding.rvEvents.unVeil()
                     it.data?.let { data ->
-                        adapter.setBooks(data)
+                        adapter.setData(data)
                     }
                 }
 
