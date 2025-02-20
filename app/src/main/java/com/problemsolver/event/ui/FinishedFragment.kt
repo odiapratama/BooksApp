@@ -11,6 +11,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.problemsolver.event.R
 import com.problemsolver.event.data.model.Status
 import com.problemsolver.event.databinding.FragmentUpcomingBinding
+import com.problemsolver.event.utils.gone
+import com.problemsolver.event.utils.visible
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -53,6 +55,8 @@ class FinishedFragment : Fragment(R.layout.fragment_finished) {
 
                 Status.SUCCESS -> {
                     binding.rvEvents.unVeil()
+                    if (it.data.isNullOrEmpty()) binding.tvEmpty.visible()
+                    else binding.tvEmpty.gone()
                     it.data?.let { data ->
                         adapter.setData(data)
                     }

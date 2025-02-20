@@ -70,4 +70,6 @@ class EventViewModel @Inject constructor(
     }
 
     suspend fun getFavoriteEventById(id: Int) = repository.getFavoriteEventById(id)
+
+    suspend fun getAppPreferences() = repository.getAppPreference()
 }

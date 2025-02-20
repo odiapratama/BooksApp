@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "com.problemsolver.event";
+option java_multiple_files = true;
+
+message Settings {
+  int32 theme_mode = 1;
+  UpcomingEvent upcoming_event = 2;
+}
+
+message UpcomingEvent {
+  int32 id = 1;
+  string name = 2;
+  string summary = 3;
+  string description = 4;
+  string imageLogo = 5;
+  string mediaCover = 6;
+  string category = 7;
+  string ownerName = 8;
+  string cityName = 9;
+  int32 quota = 10;
+  int32 registrants = 11;
+  string beginTime = 12;
+  string endTime = 13;
+  string link = 14;
+}

@@ -1,5 +1,6 @@
 package com.problemsolver.event.data.repository
 
+import com.problemsolver.event.Settings
 import com.problemsolver.event.data.model.Event
 import com.problemsolver.event.data.model.EventDetailResponse
 import com.problemsolver.event.data.model.EventsResponse
@@ -12,4 +13,5 @@ interface EventRepository {
     suspend fun getFavoriteEvents(): Flow<List<Event>>
     suspend fun deleteFavoriteEvent(id: Int)
     suspend fun getFavoriteEventById(id: Int): Event?
+    suspend fun getAppPreference(): Flow<Settings>
 }

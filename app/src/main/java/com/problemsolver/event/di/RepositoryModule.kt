@@ -1,5 +1,7 @@
 package com.problemsolver.event.di
 
+import androidx.datastore.core.DataStore
+import com.problemsolver.event.Settings
 import com.problemsolver.event.data.repository.EventRepository
 import com.problemsolver.event.data.repository.EventRepositoryImpl
 import com.problemsolver.event.data.source.local.EventDao
@@ -19,8 +21,9 @@ object RepositoryModule {
     @Singleton
     fun provideEventRepository(
         eventApi: EventApi,
-        eventDao: EventDao
+        eventDao: EventDao,
+        appPreferences: DataStore<Settings>
     ): EventRepository {
-        return EventRepositoryImpl(eventApi, eventDao)
+        return EventRepositoryImpl(eventApi, eventDao, appPreferences)
     }
 }

@@ -4,6 +4,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("com.google.dagger.hilt.android")
     id("androidx.room")
+    alias(libs.plugins.protobuf)
 }
 
 android {
@@ -55,10 +56,14 @@ dependencies {
     implementation(libs.viewbindingpropertydelegate.noreflection)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+    implementation(libs.datastore)
+    implementation(libs.protobuf)
+    implementation(libs.work.manager)
     ksp(libs.moshi.kotlin.codegen)
     implementation(libs.coil)
     implementation(libs.androidveil)
     implementation(libs.hilt.android)
+    implementation(libs.hilt.work)
     ksp(libs.hilt.android.compiler)
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
@@ -71,4 +76,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.19.4"
+    }
+    generateProtoTasks {
+        all().forEach { task ->
+            task.plugins.create("java") {
+                option("lite")
+            }
+        }
+    }
 }

@@ -2,7 +2,9 @@
 agp = "8.6.1"
 androidveil = "1.1.4"
 coil = "2.7.0"
+datastore = "1.1.2"
 hiltAndroid = "2.51.1"
+hiltWoker = "1.0.0"
 kotlin = "1.9.0"
 #noinspection GradleDependency
 coreKtx = "1.13.1"
@@ -15,6 +17,7 @@ moshi = "1.15.1"
 #noinspection GradleDependency
 activity = "1.9.2"
 constraintlayout = "2.2.0"
+ksp = "1.9.0-1.0.12"
 legacySupportV4 = "1.0.0"
 navigationFragment = "2.8.5"
 #noinspection GradleDependency
@@ -24,6 +27,10 @@ okhttp = "4.12.0"
 retrofit = "2.9.0"
 retrofitKotlinxSerializationJson = "1.0.0"
 room = "2.6.1"
+protobuf = "0.9.4"
+protobufLite = "4.26.1"
+#noinspection GradleDependency
+workManager = "2.8.1"
 
 [libraries]
 androidveil = { module = "com.github.skydoves:androidveil", version.ref = "androidveil" }
@@ -31,8 +38,10 @@ androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = 
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment", version.ref = "navigationFragment" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui", version.ref = "navigationFragment" }
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
+datastore = { module = "androidx.datastore:datastore", version.ref = "datastore" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hiltAndroid" }
+hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "hiltWoker" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -52,7 +61,13 @@ retrofit-kotlin-serialization = { group = "com.jakewharton.retrofit", name = "re
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+protobuf = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protobufLite" }
+work-manager = { module = "androidx.work:work-runtime-ktx", version.ref = "workManager" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroid" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+protobuf = { id = "com.google.protobuf", version.ref = "protobuf" }
+room = { id = "androidx.room", version.ref = "room" }
