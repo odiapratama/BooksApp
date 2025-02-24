@@ -169,6 +169,10 @@ class EventDetailActivity : AppCompatActivity(R.layout.activity_event_detail) {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
+            lifecycleScope.launch {
+                favorite = viewModel.getFavoriteEventById(id)
+            }
         }
     }
 
